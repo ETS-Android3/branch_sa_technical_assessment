@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import io.branch.indexing.BranchUniversalObject;
 import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
+import io.branch.referral.util.BranchEvent;
 import io.branch.referral.util.LinkProperties;
 
 
@@ -53,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     public void sendMessage(View view) {
+        new BranchEvent("sent_message")
+                .addCustomDataProperty("Key11", "Val11")
+                .addCustomDataProperty("Key22", "Val22")
+                .setCustomerEventAlias("message")
+                .logEvent(MainActivity.this);
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
@@ -61,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getInfo(View view) {
+        new BranchEvent("get_info")
+                .addCustomDataProperty("Key33", "Val33")
+                .addCustomDataProperty("Key44", "Val44")
+                .setCustomerEventAlias("my_custom_alias")
+                .logEvent(MainActivity.this);
         Intent intent2 = new Intent(this, GetInfoActivity.class);
         EditText editText = findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
