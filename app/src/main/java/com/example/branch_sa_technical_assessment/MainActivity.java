@@ -24,4 +24,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
+
+    public void getInfo(View view) {
+        Intent intent2 = new Intent(this, GetInfoActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
+        String message = editText.getText().toString();
+        intent2.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent2);
+    }
 }
