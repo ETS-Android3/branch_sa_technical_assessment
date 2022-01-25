@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Branch_sa_technical_assessment">
+
+        <activity
+            android:name=".DisplayMessageActivity"
+            android:parentActivityName=".DisplayMessageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
