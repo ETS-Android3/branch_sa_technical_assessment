@@ -1,4 +1,4 @@
-package com.example.branch_sa_technical_assessment;
+package com.corneliuswang.branch_sa_technical_assessment;
 
 import org.junit.Test;
 

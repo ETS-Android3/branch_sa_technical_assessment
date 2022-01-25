@@ -1,12 +1,10 @@
-package com.example.branch_sa_technical_assessment;
+package com.corneliuswang.branch_sa_technical_assessment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class GetInfoActivity extends AppCompatActivity {
 
