@@ -1,0 +1,2 @@
+rootProject.name = "branch_sa_technical_assessment"
+include ':app'
