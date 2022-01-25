@@ -6,11 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import io.branch.referral.Branch;
+
 public class GetInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Branch logging for debugging
+        Branch.enableLogging();
+
+        // Branch object initialization
+        Branch.getAutoInstance(this);
         setContentView(R.layout.activity_get_info);
 
         // Get the Intent that started this activity and extract the string
