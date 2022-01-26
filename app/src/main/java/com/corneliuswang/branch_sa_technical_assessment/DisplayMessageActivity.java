@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import io.branch.referral.Branch;
+import io.branch.referral.util.BranchEvent;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         // Branch object initialization
         Branch.getAutoInstance(this);
         setContentView(R.layout.activity_display_message);
+
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();

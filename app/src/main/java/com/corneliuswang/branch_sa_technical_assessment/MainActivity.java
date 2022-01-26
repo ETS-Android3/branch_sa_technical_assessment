@@ -73,21 +73,20 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     public void sendMessage(View view) {
-        new BranchEvent("send_message")
-                .addCustomDataProperty("Key11", "Val11")
-                .addCustomDataProperty("Key22", "Val22")
-                .setCustomerEventAlias("message")
-                .logEvent(MainActivity.this);
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
+        new BranchEvent("send_message")
+                .addCustomDataProperty("Key11", message)
+                .setCustomerEventAlias("message")
+                .logEvent(MainActivity.this);
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
     public void getInfo(View view) {
         new BranchEvent("get_info")
-                .addCustomDataProperty("Key33", "Val33")
+                .addCustomDataProperty("Key33", String.valueOf(R.string.information))
                 .addCustomDataProperty("Key44", "Val44")
                 .setCustomerEventAlias("my_custom_alias")
                 .logEvent(MainActivity.this);

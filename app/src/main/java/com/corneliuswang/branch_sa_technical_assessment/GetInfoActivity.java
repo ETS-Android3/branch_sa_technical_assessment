@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import io.branch.referral.Branch;
+import io.branch.referral.util.BranchEvent;
 
 public class GetInfoActivity extends AppCompatActivity {
 

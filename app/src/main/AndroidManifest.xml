@@ -39,7 +39,7 @@
 
             <!-- Branch URI Scheme -->
             <intent-filter>
-                <data android:scheme="http" android:host="open" />
+                <data android:scheme="https" android:host="29nzl.app.link" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -50,14 +50,16 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="example.app.link" />
+                <data android:scheme="https" android:host="29nzl.app.link" />
                 <!-- example-alternate domain is required for App Links when the Journeys/Web SDK and Deepviews are used inside your website.  -->
-                <data android:scheme="https" android:host="example-alternate.app.link" />
+                <data android:scheme="https" android:host="29nzl-alternate.app.link" />
+                <data android:scheme="https" android:host="29nzl.test-app.link" />
+                <data android:scheme="https" android:host="29nzl-alternate.test-app.link" />
             </intent-filter>
         </activity>
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_gjYMhFnypzHJZGCHRxb3xafauwjUnroK" />
         <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hb9SdylvlCTUXSyJQAm5CopkDynJiFd9" />
-        <meta-data android:name="io.branch.sdk.TestMode" android:value="true" />     <!-- Set to true to use Branch_Test_Key (useful when simulating installs and/or switching between debug and production flavors) -->
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />     <!-- Set to true to use Branch_Test_Key (useful when simulating installs and/or switching between debug and production flavors) -->
 
     </application>
 
