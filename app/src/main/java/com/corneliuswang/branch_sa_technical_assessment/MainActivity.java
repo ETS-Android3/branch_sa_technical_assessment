@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,6 +15,8 @@ import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
 import io.branch.referral.util.BranchEvent;
 import io.branch.referral.util.LinkProperties;
+
+import static io.branch.referral.Defines.Jsonkey.SDK;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,11 +33,27 @@ public class MainActivity extends AppCompatActivity {
         // Branch object initialization
         Branch.getAutoInstance(this);
     }
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//        Branch.sessionBuilder(this).withCallback(branchReferralInitListener).withData(getIntent() != null ? getIntent().getData() : null).init();
-//    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Branch.sessionBuilder(this).withCallback(branchReferralInitListener).withData(getIntent() != null ? getIntent().getData() : null).init();
+        Branch.sessionBuilder(this).withCallback(new Branch.BranchReferralInitListener() {
+            @Override
+            public void onInitFinished(JSONObject referringParams, BranchError error) {
+                if (error == null) {
+                    Log.i("BRANCH SDK", referringParams.toString());
+                } else {
+                    Log.i("BRANCH SDK", error.getMessage());
+                }
+            }
+        }).withData(this.getIntent().getData()).init();
+
+        // latest
+        JSONObject sessionParams = Branch.getInstance().getLatestReferringParams();
+
+        // first
+        JSONObject installParams = Branch.getInstance().getFirstReferringParams();
+    }
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -54,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     public void sendMessage(View view) {
-        new BranchEvent("sent_message")
+        new BranchEvent("send_message")
                 .addCustomDataProperty("Key11", "Val11")
                 .addCustomDataProperty("Key22", "Val22")
                 .setCustomerEventAlias("message")
