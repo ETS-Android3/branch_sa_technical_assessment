@@ -247,7 +247,8 @@ public void sendMessage(View view) {
  ```
  
 7) You can then run the application on the device you use to test it and the device logs should mention that branch API made a POST call. You can use the <a href="https://dashboard.branch.io/liveview/events"> Liveview Dashboard </a> to check if the events are being tracked properly. Here's what it will look like when they are:
-<br>
+
+
 ![Branch_Dashboard_Liveview](https://user-images.githubusercontent.com/56694544/151289229-21ddfc9a-b9ac-4fd7-8dc9-e9ca05d1f8f7.PNG)
 
 8) You also requested deep link routing, so here's how you enable it in your launcher activity.
