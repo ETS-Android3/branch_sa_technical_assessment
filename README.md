@@ -8,55 +8,106 @@ Please reference https://help.branch.io/developers-hub/docs/android-basic-integr
 1) First install the branch SDK by adding the dependencies to your app-level / module build.gradle file
 
 ```bash
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        applicationId "com.corneliuswang.branch_sa_technical_assessment"
+        minSdkVersion 18
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+#Here is where you'll add the code which will install the branch files
 dependencies {
-    ...
-    // required for all Android apps
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Branch sdk required for all Android apps
     implementation 'io.branch.sdk.android:library:5.+'
     // required if your app is in the Google Play Store (tip: avoid using bundled play services libs)
     implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0+'
-    // optional
     // Chrome Tab matching (enables 100% guaranteed matching based on cookies)
     implementation 'androidx.browser:browser:1.0.0'
-    // Replace above with the line below if you do not support androidx
-    // implementation 'com.android.support:customtabs:28.0.0'
-    ...
+
 }
 ```
 
-2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file
+2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file. Make sure to replace the 
 
 ```bash
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eneff.branch.example.android">
-    
-    <!-- uses-permissions -->
+    package="com.corneliuswang.branch_sa_technical_assessment">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
     <application
         android:allowBackup="true"
-        android:name="com.eneff.branch.example.android.CustomApplicationClass"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.Branch_sa_technical_assessment">
 
-        <!-- intent filters to Launcher Activity to handle incoming Branch intents -->
+
+        <!-- Branch init -->
+
         <activity
-            android:name=".LauncherActivity"
+            android:name="com.corneliuswang.branch_sa_technical_assessment.GetInfoActivity"
+            android:parentActivityName="com.corneliuswang.branch_sa_technical_assessment.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.corneliuswang.branch_sa_technical_assessment.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.corneliuswang.branch_sa_technical_assessment.DisplayMessageActivity"
+            android:parentActivityName="com.corneliuswang.branch_sa_technical_assessment.DisplayMessageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.corneliuswang.branch_sa_technical_assessment.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.corneliuswang.branch_sa_technical_assessment.MainActivity"
             android:launchMode="singleTask"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data android:scheme="test" android:host="corywang.com" />
             </intent-filter>
 
-            <!-- Branch URI Scheme -->
+#Branch URI Scheme / intent filters go here
             <intent-filter>
-                <data android:scheme="yourapp" android:host="open" />
+                <data android:scheme="https" android:host="29nzl.app.link" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -67,17 +118,20 @@ dependencies {
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="example.app.link" />
+                <data android:scheme="https" android:host="29nzl.app.link" />
                 <!-- example-alternate domain is required for App Links when the Journeys/Web SDK and Deepviews are used inside your website.  -->
-                <data android:scheme="https" android:host="example-alternate.app.link" />
+                <data android:scheme="https" android:host="29nzl-alternate.app.link" />
+                <data android:scheme="https" android:host="29nzl.test-app.link" />
+                <data android:scheme="https" android:host="29nzl-alternate.test-app.link" />
             </intent-filter>
         </activity>
-
-        <!-- Branch init meta-data -->
-        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Sw" />
-        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hlxrWC5Zx16DkYmWu4AHiimdqugRYMr" />
+        
+#Branch Initialization / meta-data goes here. Make sure to replace live/test keys with the ones found in your branch dashboard
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_gjYMhFnypzHJZGCHRxb3xafauwjUnroK" />
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hb9SdylvlCTUXSyJQAm5CopkDynJiFd9" />
         <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />     <!-- Set to true to use Branch_Test_Key (useful when simulating installs and/or switching between debug and production flavors) -->
-
     </application>
 
 </manifest>
+```
+
