@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.corneliuswang.branch_sa_technical_assessment">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Branch_sa_technical_assessment">
+
 
         <!-- Branch init -->
 
@@ -35,6 +38,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data android:scheme="test" android:host="corywang.com" />
             </intent-filter>
 
             <!-- Branch URI Scheme -->
@@ -60,7 +64,6 @@
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_gjYMhFnypzHJZGCHRxb3xafauwjUnroK" />
         <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hb9SdylvlCTUXSyJQAm5CopkDynJiFd9" />
         <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />     <!-- Set to true to use Branch_Test_Key (useful when simulating installs and/or switching between debug and production flavors) -->
-
     </application>
 
 </manifest>

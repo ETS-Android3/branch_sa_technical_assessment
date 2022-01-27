@@ -15,6 +15,7 @@ import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
 import io.branch.referral.util.BranchEvent;
 import io.branch.referral.util.LinkProperties;
+import io.branch.referral.validators.IntegrationValidator;
 
 import static io.branch.referral.Defines.Jsonkey.SDK;
 
@@ -76,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
         new BranchEvent("send_message")
                 .addCustomDataProperty("Key11", message)
                 .setCustomerEventAlias("message")
                 .logEvent(MainActivity.this);
-        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
