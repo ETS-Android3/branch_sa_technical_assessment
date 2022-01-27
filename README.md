@@ -58,7 +58,7 @@ dependencies {
 }
 ```
 
-2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file. Make sure to replace the keys with the ones found in your <a href="https://dashboard.branch.io/account-settings/profile"> Branch Dashboard</a>
+2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file. Make sure to replace the keys in the meta data with the ones found in your <a href="https://dashboard.branch.io/account-settings/profile"> Branch Dashboard Account Settings</a> and the links with the ones found in your <a href="https://dashboard.branch.io/configuration/general"> Branch Dashboard Configuration Settings </a>
 
 ```bash
 <?xml version="1.0" encoding="utf-8"?>
@@ -105,7 +105,7 @@ dependencies {
                 <data android:scheme="test" android:host="corywang.com" />
             </intent-filter>
 
-#Branch URI Scheme / intent filters go here
+#Branch URI Scheme / intent filters / links go here
             <intent-filter>
                 <data android:scheme="https" android:host="29nzl.app.link" />
                 <action android:name="android.intent.action.VIEW" />
@@ -113,7 +113,7 @@ dependencies {
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
-            <!-- Branch App Links -->
+#Branch links from configuration also go here
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
