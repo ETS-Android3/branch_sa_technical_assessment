@@ -38,7 +38,7 @@ android {
     }
 }
 
-#Here is where you'll add the code which will install the branch files
+<!--Here is where you'll add the code which will install the branch files-->
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -105,7 +105,7 @@ dependencies {
                 <data android:scheme="test" android:host="corywang.com" />
             </intent-filter>
 
-#Branch URI Scheme / intent filters / links go here
+<!--Branch URI Scheme / intent filters / links go here-->
             <intent-filter>
                 <data android:scheme="https" android:host="29nzl.app.link" />
                 <action android:name="android.intent.action.VIEW" />
@@ -113,7 +113,7 @@ dependencies {
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
-#Branch links from configuration also go here
+<!--Branch links from configuration also go here-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -126,7 +126,7 @@ dependencies {
             </intent-filter>
         </activity>
         
-#Branch Initialization / meta-data goes here. Make sure to replace live/test keys with the ones found in your branch dashboard
+<!--Branch Initialization / meta-data goes here. Make sure to replace live/test keys with the ones found in your branch dashboard -->
         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_gjYMhFnypzHJZGCHRxb3xafauwjUnroK" />
         <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hb9SdylvlCTUXSyJQAm5CopkDynJiFd9" />
         <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />     <!-- Set to true to use Branch_Test_Key (useful when simulating installs and/or switching between debug and production flavors) -->
@@ -149,7 +149,7 @@ import android.widget.EditText;
 
 import org.json.JSONObject;
 
-#Make sure to import the classes into the activity
+<!--Make sure to import the classes into the activity -->
 import io.branch.indexing.BranchUniversalObject;
 import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.corneliuswang.branch_sa_technical_assessment.Message";
     
-#Add branch logging and obj. initialization here
+<!--Add branch logging and obj. initialization here-->
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         Branch.sessionBuilder(this).withCallback(branchReferralInitListener).withData(getIntent() != null ? getIntent().getData() : null).init();
-#Integration Validator goes here
+<!--Integration Validator goes here-->
         IntegrationValidator.validate(MainActivity.this);
 ```
 
@@ -223,7 +223,7 @@ public void sendMessage(View view) {
         EditText editText = findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
- #Adding branch custom event logging
+ <!--Adding branch custom event logging-->
         new BranchEvent("send_message")
                 .addCustomDataProperty("Key11", message)
                 .setCustomerEventAlias("message")
@@ -232,7 +232,7 @@ public void sendMessage(View view) {
  }
 
  public void getInfo(View view) {
- #Adding branch custom event logging
+ <!--Adding branch custom event logging-->
         new BranchEvent("get_info")
                 .addCustomDataProperty("Key33", String.valueOf(R.string.information))
                 .addCustomDataProperty("Key44", "Val44")
