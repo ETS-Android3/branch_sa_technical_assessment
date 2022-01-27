@@ -2,7 +2,7 @@
 This is an example of what the branch SDK will look like once it's implemented on Android via AndroidStudio
 
 ## Documentation
-Please reference https://help.branch.io/developers-hub/docs/android-basic-integration for more information regarding further integration
+Please reference https://help.branch.io/developers-hub/docs/android-basic-integration for more information regarding configuration / initialization
 
 ## Steps
 1) First install the branch SDK by adding the dependencies to your app-level / module build.gradle file
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
     };
 ```
 
-5) After configuration, you can test if it properly calls the Branch API / Dashboard by inserting Integration Validator into the onStart() method and checking the logs after building and running the app on your device.
+5) After configuration, you can <a href="https://help.branch.io/developers-hub/docs/android-testing#section-Test-Your-Branch-Integration">test </a> if it properly calls the Branch API / Dashboard by inserting Integration Validator into the onStart() method and checking the logs after building and running the app on your device.
 
 ```bash
 @Override
@@ -246,5 +246,37 @@ public void sendMessage(View view) {
  }
  ```
  
- 7) You can then run the application on the device you use to test it and the device logs should mention that branch API made a POST call. You can use the <a href="https://dashboard.branch.io/liveview/events"> Liveview Dashboard </a> to check if the events are being tracked properly. Here's what it will look like when they are:
+7) You can then run the application on the device you use to test it and the device logs should mention that branch API made a POST call. You can use the <a href="https://dashboard.branch.io/liveview/events"> Liveview Dashboard </a> to check if the events are being tracked properly. Here's what it will look like when they are:
+<br>
 ![Branch_Dashboard_Liveview](https://user-images.githubusercontent.com/56694544/151289229-21ddfc9a-b9ac-4fd7-8dc9-e9ca05d1f8f7.PNG)
+
+8) You also requested deep link routing, so here's how you enable it in your launcher activity.
+
+```bash
+@Override
+    protected void onStart(){
+        super.onStart();
+        Branch.sessionBuilder(this).withCallback(branchReferralInitListener).withData(getIntent() != null ? getIntent().getData() : null).init();
+        Branch.sessionBuilder(this).withCallback(new Branch.BranchReferralInitListener() {
+            @Override
+            public void onInitFinished(JSONObject referringParams, BranchError error) {
+                if (error == null) {
+                    Log.i("BRANCH SDK", referringParams.toString());
+                } else {
+                    Log.i("BRANCH SDK", error.getMessage());
+                }
+            }
+        }).withData(this.getIntent().getData()).init();
+
+        // latest
+        JSONObject sessionParams = Branch.getInstance().getLatestReferringParams();
+
+        // first
+        JSONObject installParams = Branch.getInstance().getFirstReferringParams();
+    }
+```
+
+Unfortunately, I wasn't able to print out the deep link routing data, but was able to set up a quick link via the branch dashboard and test opening it using the testing device, here's what it looks like on the <a href="https://dashboard.branch.io/"> Summary Dashboard </a>:
+
+![Branch_Dashboard_Summary](https://user-images.githubusercontent.com/56694544/151290215-3630942e-dcbc-4aa3-b452-414891789d9f.PNG)
+
