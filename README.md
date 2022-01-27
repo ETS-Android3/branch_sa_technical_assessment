@@ -60,7 +60,7 @@ dependencies {
 
 2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file. Make sure to replace the keys in the meta data with the ones found in your <a href="https://dashboard.branch.io/account-settings/profile"> Branch Dashboard Account Settings</a> and the links with the ones found in your <a href="https://dashboard.branch.io/configuration/general"> Branch Dashboard Configuration Settings </a>
 
-```bash
+```java
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -137,7 +137,7 @@ dependencies {
 
 3) Load branch into the Activity / Class that you want to link to and track data from
 
-```bash
+```java
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
 4) Be sure to initialize branch in the activity you have set to android.intent.category.LAUNCHER in onStart()
 
-```bash
+```java
 @Override
     protected void onStart(){
         super.onStart();
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
 5) After configuration, you can <a href="https://help.branch.io/developers-hub/docs/android-testing#section-Test-Your-Branch-Integration">test </a> if it properly calls the Branch API / Dashboard by inserting Integration Validator into the onStart() method and checking the logs after building and running the app on your device.
 
-```bash
+```java
 @Override
     protected void onStart(){
         super.onStart();
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
 6) Since you requested custom event tracking, here's what it would look like when you implement it within the buttons you want tracked
 
-```bash
+```java
 public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = findViewById(R.id.editTextTextPersonName);
@@ -253,7 +253,7 @@ public void sendMessage(View view) {
 
 8) You also requested deep link routing, so here's how you enable it in your launcher activity.
 
-```bash
+```java
 @Override
     protected void onStart(){
         super.onStart();
