@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        Branch.sessionBuilder(this).withCallback(branchReferralInitListener).withData(getIntent() != null ? getIntent().getData() : null).init();
         Branch.sessionBuilder(this).withCallback(new Branch.BranchReferralInitListener() {
             @Override
             public void onInitFinished(JSONObject referringParams, BranchError error) {
