@@ -7,7 +7,7 @@ Please reference https://help.branch.io/developers-hub/docs/android-basic-integr
 ## Steps
 1) First install the branch SDK by adding the dependencies to your app-level / module build.gradle file
 
-```bash
+```java
 plugins {
     id 'com.android.application'
 }
