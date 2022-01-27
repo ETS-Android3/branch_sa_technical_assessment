@@ -58,7 +58,7 @@ dependencies {
 }
 ```
 
-2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file. Make sure to replace the 
+2) Configure the branch SDK to work within your application by adding the uses-permissions, intent-filters (to your activity set to android.intent.category.LAUNCHER), and meta data to your AndroidManifest.xml file. Make sure to replace the keys with the ones found in your <a href="https://dashboard.branch.io/account-settings/profile"> Branch Dashboard</a>
 
 ```bash
 <?xml version="1.0" encoding="utf-8"?>
