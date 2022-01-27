@@ -280,3 +280,7 @@ Unfortunately, I wasn't able to print out the deep link routing data, but was ab
 
 ![Branch_Dashboard_Summary](https://user-images.githubusercontent.com/56694544/151290215-3630942e-dcbc-4aa3-b452-414891789d9f.PNG)
 
+Here's what the Branch Configuration page looks like when all the information is filled out:
+
+![Branch_Configuration](https://user-images.githubusercontent.com/56694544/151290457-c7356522-07d5-4090-b7d6-e226f931e608.PNG)
+
