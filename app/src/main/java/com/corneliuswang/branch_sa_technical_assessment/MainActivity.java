@@ -50,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         // latest
         JSONObject sessionParams = Branch.getInstance().getLatestReferringParams();
+        System.out.println(sessionParams);
 
         // first
         JSONObject installParams = Branch.getInstance().getFirstReferringParams();
+        System.out.println(installParams);
     }
     @Override
     protected void onNewIntent(Intent intent) {
