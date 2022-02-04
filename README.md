@@ -284,3 +284,11 @@ Here's what the Branch Configuration page looks like when all the information is
 
 ![Branch_Configuration](https://user-images.githubusercontent.com/56694544/151290457-c7356522-07d5-4090-b7d6-e226f931e608.PNG)
 
+Deep Link Test when its working with the system logs:
+
+<img width="1842" alt="Branch_Deep_link_test" src="https://user-images.githubusercontent.com/56694544/152482282-30ab9831-63a3-415e-81fc-859cbad11f25.PNG">
+
+Deep Link Test when its not working:
+<img width="1428" alt="Branch_Deep_link_test_fail" src="https://user-images.githubusercontent.com/56694544/152482340-277fa6c1-0ca0-4ef5-af7c-f8dc74d05469.PNG">
+
+
